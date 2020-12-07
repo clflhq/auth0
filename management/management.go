@@ -301,7 +301,6 @@ func (m *Management) Request(method, uri string, v interface{}, options ...Reque
 		body := buf.String()
 		body = strings.Replace(body, "\"email_verified\":\"true\"", "\"email_verified\":true", -1)
 		body = strings.Replace(body, "\"email_verified\":\"false\"", "\"email_verified\":false", -1)
-		fmr.Printf(body)
 		err := json.Unmarshal([]byte(body), v)
 		if err != nil {
 			return err
