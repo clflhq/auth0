@@ -296,7 +296,12 @@ func (m *Management) Request(method, uri string, v interface{}, options ...Reque
 	}
 
 	if res.StatusCode != http.StatusNoContent && res.StatusCode != http.StatusAccepted {
-		err := json.NewDecoder(res.Body).Decode(v)
+		buf := new(bytes.Buffer)
+		buf.ReadFrom(res.Body)
+		body := buf.String()
+		body = strings.Replace(body, "\"email_verified\":\"true\"", "\"email_verified\":true", -1)
+		body = strings.Replace(body, "\"email_verified\":\"false\"", "\"email_verified\":false", -1)
+		err := json.Unmarshal([]byte(body), v)
 		if err != nil {
 			return err
 		}
