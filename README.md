@@ -1,3 +1,6 @@
+# Deprecated
+The official repository is now supported. Please use that. 
+
 # Auth0 Go SDK
 
 [![GoDoc](https://godoc.org/gopkg.in/auth0.v5?status.svg)](https://godoc.org/gopkg.in/auth0.v5)
